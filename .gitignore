@@ -1,3 +1,14 @@
+# SLURM output logs
+slurm-*.out
+
+# Ignore everything inside logs and checkpoints
+logs/*
+checkpoints/*
+
+# But keep the folders themselves
+!logs/.gitkeep
+!checkpoints/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
