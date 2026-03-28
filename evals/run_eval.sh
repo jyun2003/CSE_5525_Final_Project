@@ -22,23 +22,23 @@ export VLLM_ENABLE_V1_MULTIPROCESSING=0
 
 source /fs/scratch/PAS3272/huang4978/.venv/bin/activate
 
-cd evals/olmes/oe_eval/dependencies/safety
-bash install.sh
+# cd evals/olmes/oe_eval/dependencies/safety
+# bash install.sh
 cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
 
 dataset_name=(
     "gsm8k"
     "mbpp"
     "ifeval"
-    "harmbench::wildguard_reasoning_answer"
 )
 
-model_path=meta-llama/Llama-3.2-1B
+model_path=meta-llama/Llama-3.2-1B-Instruct
 
 for dataset in "${dataset_name[@]}"; do
     echo "Evaluating on ${dataset}..."
     olmes \
         --model ${model_path} \
+        --model-args '{"chat_model": true}' \
         --task ${dataset} \
-        --output-dir results/base/${dataset}
+        --output-dir results/base_instruct/${dataset}
 done

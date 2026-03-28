@@ -1,8 +1,8 @@
 """
 Merge LoRA adapter into base model and add Llama-3.2-1B-Instruct chat template.
 
-Usage:
-    python merge_llama_instruct.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged_instruct_chat_template
+Usage examples:
+    python merge_llama_instruct.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged_instruct
     python merge_llama_instruct.py --adapter checkpoints/dpo_lora --output checkpoints/dpo_merged
 """
 import argparse

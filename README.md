@@ -70,10 +70,6 @@ python train_sft.py --config configs/sft_baseline.yaml
 tinker checkpoint download $TINKER_SAMPLER_PATH
 # rename the downloaded lora adapter to a better name like sft_lora and move it to checkpoints directory
 
-
-# merge the downloaded lora adapter into baseline meta-llama/Llama-3.2-1B-Instruct
-python merge_llama_instruct.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged_instruct_chat_template
-# =====OR===== 
 # merge the downloaded lora adapter into baseline meta-llama/Llama-3.2-1B
 python merge_chat.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged
 ```

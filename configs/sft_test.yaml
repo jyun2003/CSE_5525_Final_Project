@@ -7,10 +7,10 @@ num_epochs: 1
 batch_size: 128
 max_length: 16384
 lora_rank: 64
-save_every: 500
-eval_every: 500
-infrequent_eval_every: 1000
+save_every: 5
+eval_every: 5
+infrequent_eval_every: 10
 wandb_project: "cse5525_sft"
-max_steps: 2500        # Don't use 
+max_steps: 10        # Don't use 
 load_checkpoint_path: null
 inline_evals: null

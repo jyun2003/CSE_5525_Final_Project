@@ -1,7 +1,7 @@
 """
 Merge LoRA adapter into base model and add chat template.
 
-Usage:
+Usage examples:
     python merge_chat.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged
     python merge_chat.py --adapter checkpoints/dpo_lora --output checkpoints/dpo_merged
 """
