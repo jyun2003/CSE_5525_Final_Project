@@ -1,3 +1,6 @@
+# SLURM output logs
+slurm-*.out
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
@@ -211,5 +214,8 @@ __marimo__/
 outputs/
 checkpoints/
 logs/
-results/
 wandb/
+
+# keep folder, ignore contents
+!logs/.gitkeep
+!checkpoints/.gitkeep

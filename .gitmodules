@@ -1,3 +1,6 @@
 [submodule "evals/olmes"]
 	path = evals/olmes
 	url = https://github.com/owos/olmes.git
+[submodule "tinker-cookbook"]
+	path = tinker-cookbook
+	url = https://github.com/thinking-machines-lab/tinker-cookbook.git

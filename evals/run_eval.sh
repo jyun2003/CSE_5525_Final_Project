@@ -1,12 +1,17 @@
 #!/bin/bash
+#SBATCH --account=PAS3272
+#SBATCH --cluster=ascend
+#SBATCH --gpus-per-node=1
+#SBATCH --time=12:00:00
+#SBATCH --mem=32GB
 
 #This part is need for OSC users
 export CC=gcc
 export CXX=g++
-export TRITON_CACHE_DIR=/fs/scratch/xxxx/${USER}/triton_cache
+export TRITON_CACHE_DIR=/fs/scratch/PAS3272/${USER}/triton_cache
 
-
-export UV_CACHE_DIR=/fs/scratch/xxxx/${USER}/.cache/uv  #control your uv caches
+# control your uv caches
+export UV_CACHE_DIR=/fs/scratch/PAS3272/${USER}/.cache/uv 
 
 # Dummy key to prevent import error in safety-eval (WildGuard doesn't actually use it)
 export OPENAI_API_KEY="sk-dummy-not-used"
@@ -15,28 +20,25 @@ export OPENAI_API_KEY="sk-dummy-not-used"
 # rather than forking a grandchild process that loses CUDA visibility on SLURM
 export VLLM_ENABLE_V1_MULTIPROCESSING=0
 
+source /fs/scratch/PAS3272/huang4978/.venv/bin/activate
 
-cd olmes/oe_eval/dependencies/safety
-bash install.sh
-
-
+# cd evals/olmes/oe_eval/dependencies/safety
+# bash install.sh
+cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
 
 dataset_name=(
     "gsm8k"
     "mbpp"
     "ifeval"
-    "xstest"
-    "harmbench::default"
-    "xstest::default"
-
 )
-model_path=allenai/OLMo-2-0425-1B-SFT
+
+model_path=meta-llama/Llama-3.2-1B-Instruct
 
 for dataset in "${dataset_name[@]}"; do
     echo "Evaluating on ${dataset}..."
-
-    uv run olmes \
+    olmes \
         --model ${model_path} \
+        --model-args '{"chat_model": true}' \
         --task ${dataset} \
-        --output-dir $model_path-eval-${dataset} 
+        --output-dir results/base_instruct/${dataset}
 done

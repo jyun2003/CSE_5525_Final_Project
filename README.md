@@ -26,15 +26,30 @@ Set up your Python environment with the required dependencies:
 
 ```bash
 # Clone the repository
-git clone --recurse-submodules https://github.com/shocheen/cse-5525-spring-2026-default-project.git
-cd cse-5525-spring-2026-default-project
+git clone --recurse-submodules https://github.com/jyun2003/CSE_5525_Final_Project.git
+cd CSE_5525_Final_Project
 
 # Create and activate a virtual environment
 python -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies (adjust based on your requirements)
-uv pip install tinker
+pip install tinker uv
+git clone https://github.com/thinking-machines-lab/tinker-cookbook.git
+cd tinker-cookbook
+pip install -e .
+
+# For data analysis and filtering (Extension 2)
+pip install datasets pandas datasketch
+
+# For evaluation (OLMES)
+cd evals/olmes
+sbatch run_eval.sh
+
+# Monitor with:
+squeue -u huang4978
+# See the output file (named slurm-<jobid>.out)
+tail -f slurm-<jobid>.out
 ```
 
 ### 2. Training
@@ -45,6 +60,24 @@ We provide three template files for different training approaches:
 Implement your SFT training logic in `train_sft.py`. This is the standard approach for instruction-tuning language models.
 
 An example of how to do this has already been provider by Tinker for you [here](https://github.com/thinking-machines-lab/tinker-cookbook/tree/main/tinker_cookbook/recipes/chat_sl)
+
+### Training Supervised Fine-Tuning (SFT)
+```bash
+cd CSE_5525_Final_Project
+python train_sft.py --config configs/sft_baseline.yaml
+
+# Download final sampler weights
+tinker checkpoint download $TINKER_SAMPLER_PATH
+# rename the downloaded lora adapter to a better name like sft_lora and move it to checkpoints directory
+
+# merge the downloaded lora adapter into baseline meta-llama/Llama-3.2-1B
+python merge_chat.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged
+```
+### Evaluating SFT
+```bash
+# modify based on your directory structure
+model path: CSE_5525_Final_Project/checkpoints/sft_merged
+```
 
 #### Reward Modeling (RM)
 Implement your reward model training in `train_rm.py`. This trains a model to predict human preferences.
