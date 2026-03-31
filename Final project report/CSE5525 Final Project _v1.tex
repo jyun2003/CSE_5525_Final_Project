@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+
+
+\usepackage[left=0.8in,right=0.8in,top=0.9in,bottom=1in]{geometry}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+
+\title{CSE 5525 Final Project}
+
+\author{
+\begin{tabular}{ccc}
+James Huang & Wilson Wang & Dilmar Roblero \\
+\texttt{huang.4978@osu.edu} & \texttt{wang.15722@osu.edu} & \texttt{roblero.7@osu.edu}
+\end{tabular}\\[0.5em]
+March 31, 2026
+}
+
+\begin{document}
+\maketitle
+
+\section{Project Goals}
+The goal of this project is to reproduce and analyze a simplified post-training pipeline for large language models consisting of supervised fine-tuning followed by preference-based alignment using Direct Preference Optimization. We will then analyze where and why the alignment helps/hurts.
+
+\section{NLP Task}
+The task of this project is to produce a high quality response $y$ for a given instruction or user prompt $x$. This project will be evaluated on four evaluation sets: general, safety, math, and coding. 
+
+\section{Data}
+\paragraph{Instruction data (SFT):}
+\begin{itemize}
+  \item Dataset: Tulu 3/OLMo 2 SFT
+  \item Contains 866,138 examples
+\end{itemize}
+
+\paragraph{Preference data:}
+\begin{itemize}
+  \item Dataset: OLMo 2 1B preference dataset
+  \item Contains 378,301 examples
+\end{itemize}
+
+\section{Methods}
+All training is performed on the base model (Llama-3.2-1B) via the Tinker API.
+We also evaluate (Llama-3.2-1B-Instruct) as a reference model to provide a sense of the performance level of a stronger instruction-tuned model.
+\paragraph{Part A: Supervised Fine-Tuning (SFT)}
+We fine-tune the base model on the Tulu 3 SFT dataset using the provided \texttt{train\_sft.py}. For both the 2500-step and full-epoch SFT runs, we use the same baseline SFT configuration: learning rate 0.0005, linear learning-rate schedule, 1 epoch, batch size 128, max length 16384, and LoRA rank 64. These two runs also use our customized chat template. The main difference between them is the training step at which the checkpoint is taken. We also evaluate an additional full-dataset SFT variant that explicitly uses the Llama3 chat template and a different learning rate(0.1).
+
+\paragraph{Part B: Alignment with Preferences}
+We will use the provided train\_pref.py to perform DPO, starting from the best SFT checkpoint from Part A. To select this checkpoint cost-effectively and without test leakage, we will hold out a small validation split (e.g., 2–5\%) 
+from the SFT training data and choose the checkpoint with the lowest validation loss, supplemented by basic generation sanity checks (e.g, excessive repetition or abnormal refusal behavior). We will then compare SFT vs. SFT+DPO on the fixed General/Safety/Math/Coding evaluation sets, focusing on tradeoffs in instruction-following, refusal behavior, factuality/diversity, and robustness.
+
+\section{Extensions}
+\begin{itemize}
+    \item \textbf{Safety vs.~helpfulness tradeoff with error analysis.}
+    We will sweep across various beta values and plot refusal rate vs.~task performance. Beyond that, we will manually categorize a sample of outputs from the four evaluation sets into failure types (e.g., hallucination, over-refusal, and verbosity collapse) and compare how the failure distribution shifts before alignment (SFT) and after alignment (best DPO).
+
+    \item \textbf{Data quality filtering.}
+    We will first compute quality signals (length, duplicates, toxicity) on the SFT dataset, then build two training sets: (a) the original examples dataset and (b) a filtered dataset with examples meeting all quality filters, such as removing short/long responses, duplicated instruction-response pairs, and toxic responses. We will then measure how data quality affects both SFT and downstream DPO performance.
+
+    \item \textbf{LoRA rank design analysis (if budget permits).}
+    We will train with different LoRA rank values and compare evaluation scores, training loss curves, and credit cost to find the best balance between model quality and training cost.
+\end{itemize}
+
+\section{Baselines}
+\begin{itemize}
+  \item Base model: Llama-3.2-1B without any fine-tuning
+  \item SFT model: The 2500-step SFT model and the full-epoch SFT model trained on the Tulu 3 SFT dataset.
+  \item SFT + DPO model: The SFT model with preference alignment on the OLMo 2 1B preference dataset
+\end{itemize}
+
+\section{Evaluation}
+We will use the automatic metrics, generation, and rubric-based evaluation provided in eval.py, which runs over the following evaluation sets: 
+\begin{itemize}
+  \item General: general instruction-following and helpfulness
+  \item Safety: harmful, sensitive, and refusal-triggering prompts
+  \item Math: formatting traps, long-context, adversarial prompts
+  \item Coding: a standard NLP task framed as generation
+\end{itemize}
+
+\section{Check-in Results}
+\subsection{SFT Results}
+
+Table~\ref{tab:sft_results} shows our SFT results on four benchmarks. Compared with the untuned baseline, both SFT checkpoints improve performance on GSM8K, MBPP, and IFEval, which suggests that supervised fine-tuning helps the model better follow 
+instructions and produce stronger task responses. We include Llama-3.2-1B-Instruct as a reference model because it 
+provides a strong instruction-tuned comparison point. In addition, we report one full-dataset SFT variant using the Llama3 chat template as an additional comparison.
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lccccc}
+\hline
+\textbf{Benchmark} & \textbf{Baseline} & \textbf{SFT 2500-step} & \textbf{SFT Full Epoch} & \textbf{SFT Full +} & \textbf{Llama-Instruct} \\
+ &  &  &  & \textbf{Llama3 Template} &  \\
+\hline
+GSM8K     & 3.6\%  & 9.5\%  & 11.7\% & 6.3\%  & 42.0\% \\
+MBPP      & 20.8\% & 22.4\% & 24.0\% & 21.6\% & 32.4\% \\
+IFEval    & 18.3\% & 40.9\% & 46.4\% & 43.8\% & 65.2\% \\
+HarmBench & --     & 84.7\% & 82.2\% & 64.1\% & 83.4\% \\
+\hline
+\end{tabular}
+\caption{SFT results on four benchmarks. Llama-3.2-1B-Instruct is included as a reference model.}
+\label{tab:sft_results}
+\end{table}
+
+\subsection{Training Cost}
+
+So far, our total training cost is \$155. We have about \$595 remaining in our team budget.
+
+\subsection{Comparison and Model Selection}
+
+We compared the 2500-step, full-epoch, and Llama3 chat-template SFT variants in Table~\ref{tab:sft_results}. The full-epoch SFT model performs better than the 2500-step checkpoint on GSM8K, MBPP, and IFEval, 
+and also outperforms the additional Llama3 chat-template variant overall. Based on this comparison, we select the full-epoch SFT model with our customized chat template as our best SFT model for the next DPO stage. 
+Given the relatively high cost of SFT training, we focus on a small set of main configurations for this check-in and leave broader hyperparameter comparisons to the extension stage if our remaining budget permits.
+
+\subsection{Future Plan}
+
+\begin{itemize}
+    \item \textbf{By April 5:} Complete the DPO stage and prepare the aligned model for further evaluation.
+    
+    \item \textbf{April 5--April 13:} Work on two extensions in parallel:
+    \begin{itemize}
+        \item \textbf{Safety vs.~helpfulness tradeoff with error analysis} 
+        \item \textbf{Data quality filtering} 
+    \end{itemize}
+    
+    \item \textbf{By April 13:} Complete the main experiments for both extensions.
+    
+    \item \textbf{April 13--April 20:} Finish extension analysis, organize results, and complete the final report.
+    
+    \item \textbf{By April 20:} Submit the final project report and complete the last extension.
+\end{itemize}
+
+\section{Ethical Challenges}
+\paragraph{Risk of harmful content generation and misuse.}
+The safety evaluation prompts may contain harmful and sensitive content. During generation and evaluation, a misaligned model could produce responses that are actionable and could be misused. To mitigate this risk, we will keep the model, evaluation prompts, and raw generations private to the team, Professor and TA. 
+
+\paragraph{Implicit bias in preference-based alignment.}
+Preference optimization fixes an implicit definition of what counts as a ``good'' response, but this definition may reflect cultural preferences or biases from the dataset creators. As a result, DPO may amplify bias, making the model more favorable toward certain viewpoints or less supportive toward certain forms of expression. As we mentioned above, We will not deploy the model and will use it strictly for this course project. In our analysis, we will examine outputs for potential bias patterns and document representative examples.
+
+\paragraph{Overconfidence and factuality regressions.}
+Alignment may increase the model's fluency and apparent confidence without improving factual correctness, potentially exacerbating hallucinations and misleading users. As a mitigation, we will encourage calibrated responses for uncertain queries (e.g. expressing uncertainty, requesting clarification, or recommending verification).
+
+\end{document}
