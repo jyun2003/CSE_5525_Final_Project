@@ -1,0 +1,16 @@
+# DPO configuration for Llama-3.2-1B on OLEMs with 
+model_name: "meta-llama/Llama-3.2-1B"
+load_checkpoint_path: "tinker://b5f41e43-376d-51d1-9891-5069aef342ab:train:0/weights/final"
+learning_rate: 0.00001  
+dpo_beta: 0.1 
+lr_schedule: "linear"
+num_epochs: 1
+batch_size: 256
+max_length: 8192
+lora_rank: 64
+save_every: 100
+eval_every: 100
+wandb_project: "cse5525_dpo"
+max_steps: 1100
+inline_evals: null
+infrequent_eval_every: 100

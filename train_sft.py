@@ -81,7 +81,7 @@ class SFTTrainer:
         learning_rate = args.get("learning_rate", 5e-4)
         lr_schedule = args.get("lr_schedule", "linear")
         num_epochs = args.get("num_epochs", 1)
-        lora_rank = args.get("lora_rank", 64)
+        lora_rank = args.get("lora_rank", 16)
         batch_size = args.get("batch_size", 128)
         max_length = args.get("max_length", 16384)
         save_every = args.get("save_every", 500) # checkpoints are saved every `save_every` steps to `log_path`
@@ -171,7 +171,7 @@ class SFTTrainer:
 
 # CLI entry point
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="SFT Training for CSE 5525")
+    parser = argparse.ArgumentParser(description="SFT Training")
     parser.add_argument("--config", type=str, required=True,
                         help="Path to YAML config file (e.g., configs/sft_baseline.yaml)")
 

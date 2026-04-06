@@ -77,6 +77,26 @@ python merge_chat.py --adapter checkpoints/sft_lora --output checkpoints/sft_mer
 ```bash
 # modify based on your directory structure
 model path: CSE_5525_Final_Project/checkpoints/sft_merged
+
+then run:
+sbatch evals/run_sft_eval.sh
+```
+
+### DPO
+```bash
+cd CSE_5525_Final_Project
+python train_pref.py --config configs/dpo_01.yaml
+
+tinker checkpoint download $TINKER_SAMPLER_PATH
+python merge_chat.py --adapter checkpoints/dpo_lora --output checkpoints/dpo_merged
+```
+### Evaluating DPO
+```bash
+# modify based on your directory structure
+model path: CSE_5525_Final_Project/checkpoints/dpo_merged
+
+then run:
+sbatch evals/run_dpo_eval.sh
 ```
 
 #### Reward Modeling (RM)
@@ -154,7 +174,7 @@ olmes --model <your-model-path> --task ifeval --output-dir <output-dir>
 olmes --model <your-model-path> --task mbpp --output-dir <output-dir>
 
 # HarmBench (Safety Evaluation)
-olmes --model <your-model-path> --task harmbench::wildguard_reasoning_answer --output-dir <output-dir>
+olmes --model <your-model-path> --task harmbench::default --output-dir <output-dir>
 ```
 
 ### Evaluation Output

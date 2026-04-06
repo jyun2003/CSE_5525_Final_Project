@@ -3,32 +3,57 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --time=12:00:00
 #SBATCH --mem=32GB
- 
+#SBATCH --cluster=ascend
+
+# Set environment variables
 export CC=gcc
 export CXX=g++
 export TRITON_CACHE_DIR=/fs/scratch/PAS3272/${USER}/triton_cache
 export UV_CACHE_DIR=/fs/scratch/PAS3272/${USER}/.cache/uv
 export OPENAI_API_KEY="sk-dummy-not-used"
+export HF_TOKEN="YOUR HUGGING FACE TOKEN"
 export VLLM_ENABLE_V1_MULTIPROCESSING=0
- 
-source /fs/scratch/PAS3272/huang4978/.venv/bin/activate
-# cd evals/olmes/oe_eval/dependencies/safety
-# bash install.sh
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
- 
+
+# Ensure uv is installed
+export PATH="$HOME/.local/bin:$PATH"
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
+# Build olmes venv (only if needed — skip if already exists)
+cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes
+if [ ! -d ".venv" ]; then
+    uv venv
+    uv sync
+    uv sync --group gpu
+fi
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Setup safety-eval (only if needed)
+cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/oe_eval/dependencies/safety
+if [ ! -d "safety-eval" ]; then
+    bash install.sh
+fi
+
+# Set model path
+model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_role_final
+
+# Define dataset names
 dataset_name=(
     "gsm8k"
     "mbpp"
     "ifeval"
+    "harmbench::default"
 )
- 
-model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_role_final
+
+# Loop over datasets and run evaluations
 for dataset in "${dataset_name[@]}"; do
-    echo "Evaluating SFT on ${dataset}..."
+    echo "Evaluating on ${dataset}..."
     olmes \
         --model ${model} \
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
-        --output-dir ./results/sft_role_final/${dataset}
+        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/sft_testing/${dataset}
 done
- 

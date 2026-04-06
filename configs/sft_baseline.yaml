@@ -1,4 +1,3 @@
-# configs/sft_baseline.yaml
 # Baseline SFT configuration for Llama-3.2-1B on Tulu 3
 model_name: "meta-llama/Llama-3.2-1B"
 dataset: "tulu3"                

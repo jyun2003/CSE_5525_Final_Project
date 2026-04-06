@@ -37,10 +37,10 @@ if [ ! -d "safety-eval" ]; then
 fi
 
 cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
-model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_role_final
+model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/dpo_merged_05
 echo "Evaluating on harmbench::default..."
 olmes \
   --model ${model} \
   --model-args '{"chat_model": true}' \
   --task "harmbench::default" \
-  --output-dir ./sft_role_final_safety \
+  --output-dir ./dpo_merged_05_safety \
