@@ -36,9 +36,15 @@ model_path=meta-llama/Llama-3.2-1B-Instruct
 
 for dataset in "${dataset_name[@]}"; do
     echo "Evaluating on ${dataset}..."
+    if [ "${dataset}" == "gsm8k" ]; then
+        num_shots=8
+    else
+        num_shots=0
+    fi
     olmes \
         --model ${model_path} \
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
+        --num-shots ${num_shots} \
         --output-dir results/base_instruct/${dataset}
 done
