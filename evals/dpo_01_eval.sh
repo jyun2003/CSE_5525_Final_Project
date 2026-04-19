@@ -38,7 +38,7 @@ if [ ! -d "safety-eval" ]; then
 fi
 
 # Set model path
-model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/dpo_merged_01
+model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/dpo_merged_01_1100
 
 # Define dataset names
 # dataset_name=(
@@ -66,5 +66,5 @@ for dataset in "${dataset_name[@]}"; do
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
         --num-shots ${num_shots} \
-        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/dpo_01_eval/${dataset}
+        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/dpo_01_eval/${dataset}
 done
