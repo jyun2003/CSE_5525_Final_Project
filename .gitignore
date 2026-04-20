@@ -219,3 +219,5 @@ wandb/
 # keep folder, ignore contents
 !logs/.gitkeep
 !checkpoints/.gitkeep
+data/*.jsonl
+data/*.jsonl

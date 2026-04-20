@@ -20,11 +20,11 @@ export OPENAI_API_KEY="sk-dummy-not-used"
 # rather than forking a grandchild process that loses CUDA visibility on SLURM
 export VLLM_ENABLE_V1_MULTIPROCESSING=0
 
-source /fs/scratch/PAS3272/huang4978/.venv/bin/activate
+source /fs/scratch/PAS3272/roblero7/.venv/bin/activate
 
 # cd evals/olmes/oe_eval/dependencies/safety
 # bash install.sh
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project
 
 dataset_name=(
     "gsm8k"
@@ -36,15 +36,9 @@ model_path=meta-llama/Llama-3.2-1B-Instruct
 
 for dataset in "${dataset_name[@]}"; do
     echo "Evaluating on ${dataset}..."
-    if [ "${dataset}" == "gsm8k" ]; then
-        num_shots=8
-    else
-        num_shots=0
-    fi
     olmes \
         --model ${model_path} \
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
-        --num-shots ${num_shots} \
         --output-dir results/base_instruct/${dataset}
 done
