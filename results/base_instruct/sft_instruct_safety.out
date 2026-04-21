@@ -16,19 +16,19 @@ STDOUT:
 
 STDERR:
 fatal: destination path 'safety-eval' already exists and is not an empty directory.
-Using Python 3.12.13 environment at: /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/.venv
+Using Python 3.12.13 environment at: /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/.venv
 Resolved 1 package in 936ms
-   Building safety-eval @ file:///fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval
-      Built safety-eval @ file:///fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval
+   Building safety-eval @ file:///fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval
+      Built safety-eval @ file:///fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval
 Prepared 1 package in 285ms
 Uninstalled 1 package in 28ms
 Installed 1 package in 4ms
- ~ safety-eval==1.0 (from file:///fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval)
-Using Python 3.12.13 environment at: /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/.venv
+ ~ safety-eval==1.0 (from file:///fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval)
+Using Python 3.12.13 environment at: /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/.venv
 Checked 35 packages in 222ms
 
 2026-03-26:09:54:20,247 INFO     [run_safety.py:86] Running safety evals on model: meta-llama/Llama-3.2-1B-Instruct
-2026-03-26:09:54:20,247 INFO     [run_safety.py:23] Running uv command: VIRTUAL_ENV=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/.venv uv run --directory /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval --active --no-project python evaluation/run_all_generation_benchmarks.py --model-name-or-path meta-llama/Llama-3.2-1B-Instruct --model-input-template-path-or-name hf --report-output-path /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/test_llama/metrics.json --save-individual-results-path /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/test_llama/all.json --task-names '['"'"'harmbench:default'"'"']' --min-gpus-per-task 0
+2026-03-26:09:54:20,247 INFO     [run_safety.py:23] Running uv command: VIRTUAL_ENV=/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/.venv uv run --directory /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/dependencies/safety/safety-eval --active --no-project python evaluation/run_all_generation_benchmarks.py --model-name-or-path meta-llama/Llama-3.2-1B-Instruct --model-input-template-path-or-name hf --report-output-path /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/test_llama/metrics.json --save-individual-results-path /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/test_llama/all.json --task-names '['"'"'harmbench:default'"'"']' --min-gpus-per-task 0
 Skipping import of cpp extensions due to incompatible torch version 2.8.0+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
 INFO 03-26 09:54:32 [__init__.py:216] Automatically detected platform cuda.
 Number of devices: 1
@@ -79,7 +79,7 @@ INFO 03-26 09:55:30 [weight_utils.py:450] No model.safetensors.index.json found 
 
 INFO 03-26 09:55:57 [default_loader.py:267] Loading weights took 27.62 seconds
 INFO 03-26 09:55:58 [gpu_model_runner.py:2653] Model loading took 2.3185 GiB and 28.049052 seconds
-INFO 03-26 09:56:03 [backends.py:548] Using cache directory: /users/PCON0023/huang4978/.cache/vllm/torch_compile_cache/053ca945a5/rank_0_0/backbone for vLLM's torch.compile
+INFO 03-26 09:56:03 [backends.py:548] Using cache directory: /users/PCON0023/roblero7/.cache/vllm/torch_compile_cache/053ca945a5/rank_0_0/backbone for vLLM's torch.compile
 INFO 03-26 09:56:03 [backends.py:559] Dynamo bytecode transform time: 5.07 s
 INFO 03-26 09:56:05 [backends.py:164] Directly load the compiled graph(s) for dynamic shape from the cache, took 1.471 s
 INFO 03-26 09:56:05 [monitor.py:34] torch.compile takes 5.07 s in total
@@ -125,7 +125,7 @@ INFO 03-26 09:57:26 [weight_utils.py:413] Time spent downloading weights for all
 
 INFO 03-26 09:59:59 [default_loader.py:267] Loading weights took 152.43 seconds
 INFO 03-26 09:59:59 [gpu_model_runner.py:2653] Model loading took 13.5094 GiB and 192.588842 seconds
-INFO 03-26 10:00:05 [backends.py:548] Using cache directory: /users/PCON0023/huang4978/.cache/vllm/torch_compile_cache/93422c3831/rank_0_0/backbone for vLLM's torch.compile
+INFO 03-26 10:00:05 [backends.py:548] Using cache directory: /users/PCON0023/roblero7/.cache/vllm/torch_compile_cache/93422c3831/rank_0_0/backbone for vLLM's torch.compile
 INFO 03-26 10:00:05 [backends.py:559] Dynamo bytecode transform time: 5.40 s
 INFO 03-26 10:00:09 [backends.py:197] Cache the graph for dynamic shape for later use
 INFO 03-26 10:00:23 [backends.py:218] Compiling a graph for dynamic shape takes 18.13 s
@@ -143,7 +143,7 @@ INFO 03-26 10:00:37 [llm.py:306] Supported_tasks: ('generate',)
 Processed prompts:   0%|          | 0/320 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts:   0%|          | 1/320 [00:09<49:23,  9.29s/it, est. speed input: 16.04 toks/s, output: 2.15 toks/s]Processed prompts:   6%|▌         | 19/320 [00:09<01:55,  2.60it/s, est. speed input: 969.60 toks/s, output: 38.12 toks/s]Processed prompts:  11%|█         | 34/320 [00:10<00:56,  5.04it/s, est. speed input: 1859.62 toks/s, output: 64.64 toks/s]Processed prompts:  18%|█▊        | 57/320 [00:11<00:28,  9.28it/s, est. speed input: 2611.14 toks/s, output: 101.68 toks/s]Processed prompts:  25%|██▌       | 80/320 [00:11<00:17, 13.72it/s, est. speed input: 3334.26 toks/s, output: 135.05 toks/s]Processed prompts:  36%|███▌      | 115/320 [00:12<00:08, 25.13it/s, est. speed input: 4941.09 toks/s, output: 191.42 toks/s]Processed prompts:  50%|█████     | 161/320 [00:12<00:03, 44.95it/s, est. speed input: 6557.21 toks/s, output: 264.93 toks/s]Processed prompts:  60%|██████    | 193/320 [00:12<00:02, 61.72it/s, est. speed input: 8020.85 toks/s, output: 314.73 toks/s]Processed prompts:  78%|███████▊  | 250/320 [00:12<00:00, 101.17it/s, est. speed input: 10273.45 toks/s, output: 403.61 toks/s]Processed prompts:  87%|████████▋ | 279/320 [00:12<00:00, 103.61it/s, est. speed input: 11359.91 toks/s, output: 441.20 toks/s]Processed prompts: 100%|██████████| 320/320 [00:12<00:00, 103.61it/s, est. speed input: 13161.96 toks/s, output: 504.24 toks/s]Processed prompts: 100%|██████████| 320/320 [00:12<00:00, 25.21it/s, est. speed input: 13161.96 toks/s, output: 504.24 toks/s] 
 [rank0]:[W326 10:00:51.696017351 ProcessGroupNCCL.cpp:1538] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
 100%|██████████| 1/1 [04:25<00:00, 265.80s/it]100%|██████████| 1/1 [04:25<00:00, 265.80s/it]
- *** DONE! Evaluation report is saved to /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/test_llama/metrics.json.harmbench:default. Spent 343.78 seconds.
+ *** DONE! Evaluation report is saved to /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/test_llama/metrics.json.harmbench:default. Spent 343.78 seconds.
 Running harmbench:default on GPUs 0.
 2026-03-26:10:00:58,003 INFO     [run_safety.py:48] Deactivating safety-eval...
 2026-03-26:10:00:58,048 INFO     [run_safety.py:53] safety-eval deactivation complete.

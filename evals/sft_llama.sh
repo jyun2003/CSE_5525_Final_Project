@@ -21,7 +21,7 @@ if ! command -v uv &> /dev/null; then
 fi
 
 # Build olmes venv (only if needed — skip if already exists)
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes
 if [ ! -d ".venv" ]; then
     uv venv
     uv sync
@@ -32,13 +32,13 @@ fi
 source .venv/bin/activate
 
 # Setup safety-eval (only if needed)
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/oe_eval/dependencies/safety
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/oe_eval/dependencies/safety
 if [ ! -d "safety-eval" ]; then
     bash install.sh
 fi
 
 # Set model path
-model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_llama3_final
+model=/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_llama3_final
 
 # Define dataset names
 # dataset_name=(
@@ -66,5 +66,5 @@ for dataset in "${dataset_name[@]}"; do
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
         --num-shots ${num_shots} \
-        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/sft_llama/${dataset}
+        --output-dir /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/sft_llama/${dataset}
 done

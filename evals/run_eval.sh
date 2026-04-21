@@ -20,11 +20,11 @@ export OPENAI_API_KEY="sk-dummy-not-used"
 # rather than forking a grandchild process that loses CUDA visibility on SLURM
 export VLLM_ENABLE_V1_MULTIPROCESSING=0
 
-source /fs/scratch/PAS3272/huang4978/.venv/bin/activate
+source /fs/scratch/PAS3272/roblero7/.venv/bin/activate
 
 # cd evals/olmes/oe_eval/dependencies/safety
 # bash install.sh
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project
 
 dataset_name=(
     "gsm8k"

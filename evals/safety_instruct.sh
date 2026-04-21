@@ -19,7 +19,7 @@ if ! command -v uv &> /dev/null; then
 fi
 
 # Build olmes venv (only if needed — skip if already exists)
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes
 if [ ! -d ".venv" ]; then
     uv venv
     uv sync
@@ -38,7 +38,7 @@ if [ ! -d "safety-eval" ]; then
     bash install.sh
 fi
 
-cd /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project
+cd /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project
 model=meta-llama/Llama-3.2-1B-Instruct
 echo "Evaluating on harmbench::default..."
 olmes \

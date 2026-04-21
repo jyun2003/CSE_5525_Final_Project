@@ -47,7 +47,7 @@ cd evals/olmes
 sbatch run_eval.sh
 
 # Monitor with:
-squeue -u huang4978
+squeue -u roblero7
 # See the output file (named slurm-<jobid>.out)
 tail -f slurm-<jobid>.out
 ```

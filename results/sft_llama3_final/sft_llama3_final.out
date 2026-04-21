@@ -1,14 +1,14 @@
 Evaluating SFT on gsm8k...
-2026-03-27 22:23:10,694 [WARNING] No config found for model:/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
+2026-03-27 22:23:10,694 [WARNING] No config found for model:/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
 2026-03-27 22:23:10,694 [WARNING] No config found for task: gsm8k, using raw task
 2026-03-27 22:23:10,694 [INFO] Running eval locally on 1 tasks!
-2026-03-27 22:23:10,694 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "gsm8k"}' --output-dir ./results/sft_final_modified2/gsm8k --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
+2026-03-27 22:23:10,694 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "gsm8k"}' --output-dir ./results/sft_final_modified2/gsm8k --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
 Skipping import of cpp extensions due to incompatible torch version 2.8.0+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
 INFO 03-27 22:23:44 [__init__.py:216] Automatically detected platform cuda.
 2026-03-27:22:24:37,690 INFO     [rouge_scorer.py:83] Using default tokenizer.
 2026-03-27:22:24:40,912 WARNING  [base_task.py:133] Split not specified in task config. Defaulting to 'test'.
 2026-03-27:22:24:40,938 INFO     [huggingface.py:170] Using device 'cuda'
-The tokenizer you are loading from '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
 2026-03-27:22:24:46,660 INFO     [run_eval.py:689] Model loaded. Model hash: 72fdca288bd8f8d901bb8c04f4e1249a
 2026-03-27:22:24:46,661 INFO     [run_eval.py:692] GPU memory:
 GPU-0: 34.47 GB free of 39.49 GB
@@ -1370,21 +1370,21 @@ The following generation flags are not valid and may be ignored: ['temperature',
 2026-03-28:00:41:18,306 INFO     [run_eval.py:574] 
 
 ** Task metrics: **
-{'task_name': 'gsm8k', 'task_hash': '021a617faf1d28aee36b95711b4f8eff', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'gsm8k', 'task_core': 'gsm8k', 'limit': None, 'split': 'test', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'exact_match', 'random_subsample_seed': 1234, 'context_kwargs': {'no_cot': False, 'cot_style': None, 'system_prompt': None, 'assistant_prefix': 'Answer:', 'fewshot_as_multiturn': True}, 'generation_kwargs': {'max_gen_toks': 512, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': ['Question:', '</s>', '<|im_end|>'], 'repeats': 1}, 'metric_kwargs': {'regexes_to_ignore': [',', '\\$', '(?s).*#### ', '\\.$']}, 'native_id_field': 'id', 'fewshot_source': 'STD:GSM8k', 'dataset_path': 'openai/gsm8k', 'dataset_name': 'main', 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/gsm8k', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 5.228874444961548, 'current_date': '2026-03-28 02:24:51 UTC', 'num_instances': 1319, 'beaker_info': {}, 'metrics': {'exact_match': 0.06292645943896892, 'primary_score': 0.06292645943896892, 'extra_metrics': {'num_tokens': 405.0591357088704, 'max_tokens_reached': 0.7733131159969674}}, 'task_idx': 0}
+{'task_name': 'gsm8k', 'task_hash': '021a617faf1d28aee36b95711b4f8eff', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'gsm8k', 'task_core': 'gsm8k', 'limit': None, 'split': 'test', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'exact_match', 'random_subsample_seed': 1234, 'context_kwargs': {'no_cot': False, 'cot_style': None, 'system_prompt': None, 'assistant_prefix': 'Answer:', 'fewshot_as_multiturn': True}, 'generation_kwargs': {'max_gen_toks': 512, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': ['Question:', '</s>', '<|im_end|>'], 'repeats': 1}, 'metric_kwargs': {'regexes_to_ignore': [',', '\\$', '(?s).*#### ', '\\.$']}, 'native_id_field': 'id', 'fewshot_source': 'STD:GSM8k', 'dataset_path': 'openai/gsm8k', 'dataset_name': 'main', 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/gsm8k', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 5.228874444961548, 'current_date': '2026-03-28 02:24:51 UTC', 'num_instances': 1319, 'beaker_info': {}, 'metrics': {'exact_match': 0.06292645943896892, 'primary_score': 0.06292645943896892, 'extra_metrics': {'num_tokens': 405.0591357088704, 'max_tokens_reached': 0.7733131159969674}}, 'task_idx': 0}
 2026-03-28:00:41:18,306 INFO     [run_eval.py:1046] Summary of primary scores: 
 gsm8k: 0.0629265
 2026-03-28:00:41:18,306 INFO     [run_eval.py:1054] Saving final metrics in ./results/sft_final_modified2/gsm8k/metrics-all.jsonl...
 2026-03-28:00:41:18,307 INFO     [run_eval.py:1067] Saving beaker metrics.json so in ./results/sft_final_modified2/gsm8k/metrics.json...
 Evaluating SFT on mbpp...
-2026-03-28 00:41:21,383 [WARNING] No config found for model:/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
+2026-03-28 00:41:21,383 [WARNING] No config found for model:/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
 2026-03-28 00:41:21,383 [WARNING] No config found for task: mbpp, using raw task
 2026-03-28 00:41:21,383 [INFO] Running eval locally on 1 tasks!
-2026-03-28 00:41:21,383 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "mbpp"}' --output-dir ./results/sft_final_modified2/mbpp --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
+2026-03-28 00:41:21,383 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "mbpp"}' --output-dir ./results/sft_final_modified2/mbpp --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
 Skipping import of cpp extensions due to incompatible torch version 2.8.0+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
 INFO 03-28 00:41:54 [__init__.py:216] Automatically detected platform cuda.
 2026-03-28:00:42:59,025 INFO     [rouge_scorer.py:83] Using default tokenizer.
 2026-03-28:00:43:02,626 INFO     [huggingface.py:170] Using device 'cuda'
-The tokenizer you are loading from '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
 2026-03-28:00:43:08,230 INFO     [run_eval.py:689] Model loaded. Model hash: 72fdca288bd8f8d901bb8c04f4e1249a
 2026-03-28:00:43:08,231 INFO     [run_eval.py:692] GPU memory:
 GPU-0: 34.47 GB free of 39.49 GB
@@ -2019,7 +2019,7 @@ assert is_num_keith(14) == True
 assert is_num_keith(12) == False
 assert is_num_keith(197) == True
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 91
@@ -2127,7 +2127,7 @@ assert solution(2, 3, 7) == ('x = ', 2, ', y = ', 1)
 assert solution(4, 2, 7) == 'No solution'
 assert solution(1, 13, 17) == ('x = ', 4, ', y = ', 1)
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 97
@@ -2189,7 +2189,7 @@ assert largest_triangle(4,2)==10.392304845413264
 assert largest_triangle(5,7)==4.639421805988064
 assert largest_triangle(9,1)==105.2220865598093
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 51
@@ -2275,7 +2275,7 @@ assert is_majority([1, 2, 3, 3, 3, 3, 10], 7, 3) == True
 assert is_majority([1, 1, 2, 4, 4, 4, 6, 6], 8, 4) == False
 assert is_majority([1, 1, 1, 2, 2], 5, 1) == True
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 74
@@ -2326,7 +2326,7 @@ assert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)
 assert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)
 assert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 39
@@ -2405,7 +2405,7 @@ assert find_Element([1,2,3,4,5],[[0,2],[0,3]],2,1) == 3
 assert find_Element([1,2,3,4],[[0,1],[0,2]],1,2) == 3
 assert find_Element([1,2,3,4,5,6],[[0,1],[0,2]],1,1) == 1
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 67
@@ -2480,7 +2480,7 @@ assert check_Validity(1,2,3) == False
 assert check_Validity(2,3,5) == False
 assert check_Validity(7,10,5) == True
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 63
@@ -2557,7 +2557,7 @@ assert get_carol(2) == 7
 assert get_carol(4) == 223
 assert get_carol(5) == 959
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 65
@@ -2617,7 +2617,7 @@ assert Check_Solution(1,3,2) == "Yes"
 assert Check_Solution(1,2,3) == "No"
 assert Check_Solution(1,-5,6) == "No"
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 48
@@ -2650,7 +2650,7 @@ assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
 assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
 assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 1
@@ -2666,7 +2666,7 @@ assert find_adverb_position("clearly!! we can see the sky")==(0, 7, 'clearly')
 assert find_adverb_position("seriously!! there are many roses")==(0, 9, 'seriously')
 assert find_adverb_position("unfortunately!! sita is going to home")==(0, 13, 'unfortunately')
 Traceback (most recent call last):
-  File "/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
+  File "/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/evals/olmes/oe_eval/metrics/code_evals/code_eval_routes.py", line 89, in _compile_task
     result = cloudpickle.dumps(compile(to_compile, "<string>", "exec"))
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "<string>", line 4
@@ -2685,21 +2685,21 @@ SyntaxError: unterminated string literal (detected at line 4)
 2026-03-28:00:54:09,438 INFO     [run_eval.py:574] 
 
 ** Task metrics: **
-{'task_name': 'mbpp', 'task_hash': '9efac8b60b5a08dd2f4aa77ab003b207', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'mbpp', 'task_core': 'mbpp', 'limit': None, 'split': 'test', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'pass_at_1', 'random_subsample_seed': 1234, 'context_kwargs': {'assistant_prefix': 'Here is the completed function:\n\n```python\n'}, 'generation_kwargs': {'max_gen_toks': 512, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': ['\nclass', '\nassert', '\n"""', '\nprint', '\nif', '\n```', '\n#', '\n<|/', '<|eot_id|>'], 'repeats': 1}, 'metric_kwargs': {'pass_at_ks': [1]}, 'native_id_field': 'task_id', 'fewshot_source': 'Original:MBPP', 'dataset_path': 'google-research-datasets/mbpp', 'dataset_name': None, 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/mbpp', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 15.882659435272217, 'current_date': '2026-03-28 04:43:09 UTC', 'num_instances': 500, 'beaker_info': {}, 'metrics': {'pass_at_1': 0.216, 'primary_score': 0.216, 'extra_metrics': {'num_tokens': 80.97}}, 'task_idx': 0}
+{'task_name': 'mbpp', 'task_hash': '9efac8b60b5a08dd2f4aa77ab003b207', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'mbpp', 'task_core': 'mbpp', 'limit': None, 'split': 'test', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'pass_at_1', 'random_subsample_seed': 1234, 'context_kwargs': {'assistant_prefix': 'Here is the completed function:\n\n```python\n'}, 'generation_kwargs': {'max_gen_toks': 512, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': ['\nclass', '\nassert', '\n"""', '\nprint', '\nif', '\n```', '\n#', '\n<|/', '<|eot_id|>'], 'repeats': 1}, 'metric_kwargs': {'pass_at_ks': [1]}, 'native_id_field': 'task_id', 'fewshot_source': 'Original:MBPP', 'dataset_path': 'google-research-datasets/mbpp', 'dataset_name': None, 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/mbpp', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 15.882659435272217, 'current_date': '2026-03-28 04:43:09 UTC', 'num_instances': 500, 'beaker_info': {}, 'metrics': {'pass_at_1': 0.216, 'primary_score': 0.216, 'extra_metrics': {'num_tokens': 80.97}}, 'task_idx': 0}
 2026-03-28:00:54:09,438 INFO     [run_eval.py:1046] Summary of primary scores: 
 mbpp: 0.216
 2026-03-28:00:54:09,439 INFO     [run_eval.py:1054] Saving final metrics in ./results/sft_final_modified2/mbpp/metrics-all.jsonl...
 2026-03-28:00:54:09,439 INFO     [run_eval.py:1067] Saving beaker metrics.json so in ./results/sft_final_modified2/mbpp/metrics.json...
 Evaluating SFT on ifeval...
-2026-03-28 00:54:12,441 [WARNING] No config found for model:/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
+2026-03-28 00:54:12,441 [WARNING] No config found for model:/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final, using raw model
 2026-03-28 00:54:12,441 [WARNING] No config found for task: ifeval, using raw task
 2026-03-28 00:54:12,441 [INFO] Running eval locally on 1 tasks!
-2026-03-28 00:54:12,441 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "ifeval"}' --output-dir ./results/sft_final_modified2/ifeval --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
+2026-03-28 00:54:12,441 [INFO] Command: python -m oe_eval.run_eval --task '{"task_name": "ifeval"}' --output-dir ./results/sft_final_modified2/ifeval --save-raw-requests true --num-workers 1 --model /fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final --model-args '{"chat_model": true}'
 Skipping import of cpp extensions due to incompatible torch version 2.8.0+cu128 for torchao version 0.16.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
 INFO 03-28 00:54:42 [__init__.py:216] Automatically detected platform cuda.
 2026-03-28:00:55:26,233 INFO     [rouge_scorer.py:83] Using default tokenizer.
 2026-03-28:00:55:30,059 INFO     [huggingface.py:170] Using device 'cuda'
-The tokenizer you are loading from '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+The tokenizer you are loading from '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
 2026-03-28:00:55:35,824 INFO     [run_eval.py:689] Model loaded. Model hash: 72fdca288bd8f8d901bb8c04f4e1249a
 2026-03-28:00:55:35,825 INFO     [run_eval.py:692] GPU memory:
 GPU-0: 34.47 GB free of 39.49 GB
@@ -3824,7 +3824,7 @@ The following generation flags are not valid and may be ignored: ['temperature',
 2026-03-28:03:05:19,357 INFO     [run_eval.py:574] 
 
 ** Task metrics: **
-{'task_name': 'ifeval', 'task_hash': 'dd155827bc6425e8873d75a6aa0e8999', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'ifeval', 'task_core': 'ifeval', 'limit': None, 'split': 'train', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'inst_level_loose_acc', 'random_subsample_seed': 1234, 'context_kwargs': None, 'generation_kwargs': {'max_gen_toks': 1280, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': []}, 'metric_kwargs': {'aggregation_levels': ['prompt', 'inst'], 'strictness_levels': ['strict', 'loose'], 'output_individual_metrics': True}, 'native_id_field': 'key', 'fewshot_source': None, 'dataset_path': 'HuggingFaceH4/ifeval', 'dataset_name': None, 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/ifeval', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 9.152523517608643, 'current_date': '2026-03-28 04:55:37 UTC', 'num_instances': 541, 'beaker_info': {}, 'metrics': {'prompt_level_strict_acc': 0.2754158964879852, 'inst_level_strict_acc': 0.39928057553956836, 'punctuation:no_comma_strict_acc': 0.2878787878787879, 'detectable_format:number_highlighted_sections_strict_acc': 0.7083333333333334, 'length_constraints:number_words_strict_acc': 0.5192307692307693, 'prompt_level_loose_acc': 0.3123844731977819, 'inst_level_loose_acc': 0.43764988009592326, 'punctuation:no_comma_loose_acc': 0.3787878787878788, 'detectable_format:number_highlighted_sections_loose_acc': 0.7083333333333334, 'length_constraints:number_words_loose_acc': 0.5384615384615384, 'detectable_content:number_placeholders_strict_acc': 0.37037037037037035, 'detectable_content:number_placeholders_loose_acc': 0.37037037037037035, 'combination:repeat_prompt_strict_acc': 0.14634146341463414, 'detectable_format:title_strict_acc': 0.9459459459459459, 'combination:repeat_prompt_loose_acc': 0.17073170731707318, 'detectable_format:title_loose_acc': 0.9459459459459459, 'change_case:english_lowercase_strict_acc': 0.23076923076923078, 'change_case:english_lowercase_loose_acc': 0.23076923076923078, 'detectable_format:number_bullet_lists_strict_acc': 0.22580645161290322, 'detectable_format:number_bullet_lists_loose_acc': 0.22580645161290322, 'change_case:english_capital_strict_acc': 0.32, 'detectable_format:multiple_sections_strict_acc': 0.5714285714285714, 'change_case:english_capital_loose_acc': 0.36, 'detectable_format:multiple_sections_loose_acc': 0.5714285714285714, 'change_case:capital_word_frequency_strict_acc': 0.44, 'startend:quotation_strict_acc': 0.17073170731707318, 'change_case:capital_word_frequency_loose_acc': 0.48, 'startend:quotation_loose_acc': 0.3902439024390244, 'keywords:existence_strict_acc': 0.46153846153846156, 'keywords:existence_loose_acc': 0.46153846153846156, 'detectable_format:json_format_strict_acc': 0.6470588235294118, 'detectable_format:json_format_loose_acc': 0.6470588235294118, 'length_constraints:number_paragraphs_strict_acc': 0.0, 'length_constraints:number_paragraphs_loose_acc': 0.07407407407407407, 'combination:two_responses_strict_acc': 0.08333333333333333, 'combination:two_responses_loose_acc': 0.08333333333333333, 'language:response_language_strict_acc': 0.6451612903225806, 'language:response_language_loose_acc': 0.6774193548387096, 'keywords:letter_frequency_strict_acc': 0.48484848484848486, 'keywords:letter_frequency_loose_acc': 0.45454545454545453, 'startend:end_checker_strict_acc': 0.07692307692307693, 'startend:end_checker_loose_acc': 0.19230769230769232, 'keywords:forbidden_words_strict_acc': 0.32653061224489793, 'keywords:forbidden_words_loose_acc': 0.42857142857142855, 'keywords:frequency_strict_acc': 0.5952380952380952, 'keywords:frequency_loose_acc': 0.5952380952380952, 'length_constraints:number_sentences_strict_acc': 0.38461538461538464, 'length_constraints:number_sentences_loose_acc': 0.4423076923076923, 'detectable_content:postscript_strict_acc': 0.46153846153846156, 'detectable_content:postscript_loose_acc': 0.46153846153846156, 'length_constraints:nth_paragraph_first_word_strict_acc': 0.08333333333333333, 'length_constraints:nth_paragraph_first_word_loose_acc': 0.08333333333333333, 'detectable_format:constrained_response_strict_acc': 0.9, 'detectable_format:constrained_response_loose_acc': 0.9, 'primary_score': 0.43764988009592326}, 'task_idx': 0}
+{'task_name': 'ifeval', 'task_hash': 'dd155827bc6425e8873d75a6aa0e8999', 'model_hash': '72fdca288bd8f8d901bb8c04f4e1249a', 'model_config': {'model': '/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/checkpoints/sft_merged_final', 'revision': None, 'trust_remote_code': None, 'max_length': 2048, 'model_path': None, 'model_type': 'hf', 'chat_model': True}, 'task_config': {'task_name': 'ifeval', 'task_core': 'ifeval', 'limit': None, 'split': 'train', 'num_shots': 0, 'fewshot_seed': 1234, 'primary_metric': 'inst_level_loose_acc', 'random_subsample_seed': 1234, 'context_kwargs': None, 'generation_kwargs': {'max_gen_toks': 1280, 'do_sample': False, 'temperature': 0.0, 'stop_sequences': []}, 'metric_kwargs': {'aggregation_levels': ['prompt', 'inst'], 'strictness_levels': ['strict', 'loose'], 'output_individual_metrics': True}, 'native_id_field': 'key', 'fewshot_source': None, 'dataset_path': 'HuggingFaceH4/ifeval', 'dataset_name': None, 'use_chat_format': True, 'version': 0.1, 'revision': None, 'compute_gold_bpb': False, 'external_eval': None, 'custom_kwargs': None, 'skip_model_judges': None, 'model_max_length': None}, 'compute_config': {'batch_size': 1, 'max_batch_size': 32, 'output_dir': './results/sft_final_modified2/ifeval', 'num_recorded_inputs': 3, 'save_raw_requests': True, 'recompute_metrics': False}, 'processing_time': 9.152523517608643, 'current_date': '2026-03-28 04:55:37 UTC', 'num_instances': 541, 'beaker_info': {}, 'metrics': {'prompt_level_strict_acc': 0.2754158964879852, 'inst_level_strict_acc': 0.39928057553956836, 'punctuation:no_comma_strict_acc': 0.2878787878787879, 'detectable_format:number_highlighted_sections_strict_acc': 0.7083333333333334, 'length_constraints:number_words_strict_acc': 0.5192307692307693, 'prompt_level_loose_acc': 0.3123844731977819, 'inst_level_loose_acc': 0.43764988009592326, 'punctuation:no_comma_loose_acc': 0.3787878787878788, 'detectable_format:number_highlighted_sections_loose_acc': 0.7083333333333334, 'length_constraints:number_words_loose_acc': 0.5384615384615384, 'detectable_content:number_placeholders_strict_acc': 0.37037037037037035, 'detectable_content:number_placeholders_loose_acc': 0.37037037037037035, 'combination:repeat_prompt_strict_acc': 0.14634146341463414, 'detectable_format:title_strict_acc': 0.9459459459459459, 'combination:repeat_prompt_loose_acc': 0.17073170731707318, 'detectable_format:title_loose_acc': 0.9459459459459459, 'change_case:english_lowercase_strict_acc': 0.23076923076923078, 'change_case:english_lowercase_loose_acc': 0.23076923076923078, 'detectable_format:number_bullet_lists_strict_acc': 0.22580645161290322, 'detectable_format:number_bullet_lists_loose_acc': 0.22580645161290322, 'change_case:english_capital_strict_acc': 0.32, 'detectable_format:multiple_sections_strict_acc': 0.5714285714285714, 'change_case:english_capital_loose_acc': 0.36, 'detectable_format:multiple_sections_loose_acc': 0.5714285714285714, 'change_case:capital_word_frequency_strict_acc': 0.44, 'startend:quotation_strict_acc': 0.17073170731707318, 'change_case:capital_word_frequency_loose_acc': 0.48, 'startend:quotation_loose_acc': 0.3902439024390244, 'keywords:existence_strict_acc': 0.46153846153846156, 'keywords:existence_loose_acc': 0.46153846153846156, 'detectable_format:json_format_strict_acc': 0.6470588235294118, 'detectable_format:json_format_loose_acc': 0.6470588235294118, 'length_constraints:number_paragraphs_strict_acc': 0.0, 'length_constraints:number_paragraphs_loose_acc': 0.07407407407407407, 'combination:two_responses_strict_acc': 0.08333333333333333, 'combination:two_responses_loose_acc': 0.08333333333333333, 'language:response_language_strict_acc': 0.6451612903225806, 'language:response_language_loose_acc': 0.6774193548387096, 'keywords:letter_frequency_strict_acc': 0.48484848484848486, 'keywords:letter_frequency_loose_acc': 0.45454545454545453, 'startend:end_checker_strict_acc': 0.07692307692307693, 'startend:end_checker_loose_acc': 0.19230769230769232, 'keywords:forbidden_words_strict_acc': 0.32653061224489793, 'keywords:forbidden_words_loose_acc': 0.42857142857142855, 'keywords:frequency_strict_acc': 0.5952380952380952, 'keywords:frequency_loose_acc': 0.5952380952380952, 'length_constraints:number_sentences_strict_acc': 0.38461538461538464, 'length_constraints:number_sentences_loose_acc': 0.4423076923076923, 'detectable_content:postscript_strict_acc': 0.46153846153846156, 'detectable_content:postscript_loose_acc': 0.46153846153846156, 'length_constraints:nth_paragraph_first_word_strict_acc': 0.08333333333333333, 'length_constraints:nth_paragraph_first_word_loose_acc': 0.08333333333333333, 'detectable_format:constrained_response_strict_acc': 0.9, 'detectable_format:constrained_response_loose_acc': 0.9, 'primary_score': 0.43764988009592326}, 'task_idx': 0}
 2026-03-28:03:05:19,358 INFO     [run_eval.py:1046] Summary of primary scores: 
 ifeval: 0.43765
 2026-03-28:03:05:19,358 INFO     [run_eval.py:1054] Saving final metrics in ./results/sft_final_modified2/ifeval/metrics-all.jsonl...

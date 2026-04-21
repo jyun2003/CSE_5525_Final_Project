@@ -131,7 +131,7 @@ class PREFTrainer:
         timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
         run_name = f"dpo-beta{dpo_beta}-{lora_rank}rank-{learning_rate}lr-{timestamp}"
         if log_path is None:
-            log_path = f"/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/logs/{run_name}"
+            log_path = f"/fs/scratch/PAS3272/roblero7/CSE_5525_Final_Project/logs/{run_name}"
         if wandb_name is None:
             wandb_name = run_name
 
