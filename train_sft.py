@@ -3,9 +3,7 @@ This module implements the SFTTrainer class for training your model using superv
 
 Usage:
     python train_sft.py --config configs/sft_baseline.yaml
-    python train_sft.py --config configs/sft_smoke_test.yaml
-    python train_sft.py --config configs/sft_filtered.yaml       # Extension 2
-    python train_sft.py --config configs/sft_lora_sweep.yaml     # Extension 3
+    python train_sft.py --config configs/sft_filtered.yaml
 """
 import argparse
 import asyncio

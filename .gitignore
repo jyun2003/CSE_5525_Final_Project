@@ -215,7 +215,9 @@ outputs/
 checkpoints/
 logs/
 wandb/
+data/
 
 # keep folder, ignore contents
 !logs/.gitkeep
 !checkpoints/.gitkeep
+!data/.gitkeep
