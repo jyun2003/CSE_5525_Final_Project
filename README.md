@@ -44,9 +44,6 @@ pip install datasets pandas datasketch
 ```
 
 ### 2. Training
-
-We provide three template files for different training approaches:
-
 #### Supervised Fine-Tuning (SFT)
 ```bash
 cd CSE_5525_Final_Project
