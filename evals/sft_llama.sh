@@ -41,15 +41,11 @@ fi
 model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_llama3_final
 
 # Define dataset names
-# dataset_name=(
-#     "gsm8k"
-#     "mbpp"
-#     "ifeval"
-#     "harmbench::default"
-#     "xstest::default"
-# )
 dataset_name=(
     "gsm8k"
+    "mbpp"
+    "ifeval"
+    "harmbench::default"
     "xstest::default"
 )
 

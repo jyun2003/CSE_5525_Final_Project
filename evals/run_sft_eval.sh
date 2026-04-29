@@ -41,17 +41,14 @@ fi
 model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/sft_role_final
 
 # Define dataset names
-# dataset_name=(
-#     "gsm8k"
-#     "mbpp"
-#     "ifeval"
-#     "harmbench::default"
-#     "xstest::default"
-# )
 dataset_name=(
     "gsm8k"
+    "mbpp"
+    "ifeval"
+    "harmbench::default"
     "xstest::default"
 )
+
 
 # Loop over datasets and run evaluations
 for dataset in "${dataset_name[@]}"; do
@@ -66,5 +63,5 @@ for dataset in "${dataset_name[@]}"; do
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
         --num-shots ${num_shots} \
-        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/sft_testing/${dataset}
+        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/sft/${dataset}
 done

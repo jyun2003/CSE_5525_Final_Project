@@ -41,15 +41,6 @@ pip install -e .
 
 # For data analysis and filtering (Extension 2)
 pip install datasets pandas datasketch
-
-# For evaluation (OLMES)
-cd evals/olmes
-sbatch run_eval.sh
-
-# Monitor with:
-squeue -u huang4978
-# See the output file (named slurm-<jobid>.out)
-tail -f slurm-<jobid>.out
 ```
 
 ### 2. Training
@@ -57,11 +48,6 @@ tail -f slurm-<jobid>.out
 We provide three template files for different training approaches:
 
 #### Supervised Fine-Tuning (SFT)
-Implement your SFT training logic in `train_sft.py`. This is the standard approach for instruction-tuning language models.
-
-An example of how to do this has already been provider by Tinker for you [here](https://github.com/thinking-machines-lab/tinker-cookbook/tree/main/tinker_cookbook/recipes/chat_sl)
-
-### Training Supervised Fine-Tuning (SFT)
 ```bash
 cd CSE_5525_Final_Project
 python train_sft.py --config configs/sft_baseline.yaml
@@ -73,16 +59,8 @@ tinker checkpoint download $TINKER_SAMPLER_PATH
 # merge the downloaded lora adapter into baseline meta-llama/Llama-3.2-1B
 python merge_chat.py --adapter checkpoints/sft_lora --output checkpoints/sft_merged
 ```
-### Evaluating SFT
-```bash
-# modify based on your directory structure
-model path: CSE_5525_Final_Project/checkpoints/sft_merged
 
-then run:
-sbatch evals/run_sft_eval.sh
-```
-
-### DPO
+#### Preference Optimization (PREF: DPO)
 ```bash
 cd CSE_5525_Final_Project
 python train_pref.py --config configs/dpo_01.yaml
@@ -90,37 +68,36 @@ python train_pref.py --config configs/dpo_01.yaml
 tinker checkpoint download $TINKER_SAMPLER_PATH
 python merge_chat.py --adapter checkpoints/dpo_lora --output checkpoints/dpo_merged
 ```
-### Evaluating DPO
-```bash
-# modify based on your directory structure
-model path: CSE_5525_Final_Project/checkpoints/dpo_merged
 
-then run:
-sbatch evals/run_dpo_eval.sh
+#### Extension 2:
+
+##### Filtered SFT
+```bash
+python filter_tulu.py
+python train_sft.py --config configs/sft_filtered.yaml
+
+tinker checkpoint download $TINKER_SAMPLER_PATH
+python merge_chat.py --adapter checkpoints/sft_filtered_lora --output checkpoints/sft_filtered
 ```
 
-#### Reward Modeling (RM)
-Implement your reward model training in `train_rm.py`. This trains a model to predict human preferences.
+##### Filtered DPO (beta = 0.1)
+```bash
+python train_pref.py --config configs/dpo_filtered_01.yaml
 
-An example of how to do this has already been provider by Tinker for you [here](https://github.com/thinking-machines-lab/tinker-cookbook/tree/main/tinker_cookbook/recipes/preference/rlhf)
+tinker checkpoint download $TINKER_SAMPLER_PATH
+python merge_chat.py --adapter checkpoints/dpo_filtered_lora --output checkpoints/dpo_filtered
+```
 
-#### Preference Optimization (PREF)
-Implement your preference optimization (e.g., DPO, PPO) in `train_pref.py`. This aligns the model using preference data.
+##### Filtered DPO (beta = 0.01)
+```bash
+python train_pref.py --config configs/dpo_filtered_001.yaml
 
-An example of how to do this has already been provider by Tinker for you [here](https://github.com/thinking-machines-lab/tinker-cookbook/tree/main/tinker_cookbook/recipes/preference)
-
-Each template provides a basic class structure. You should:
-1. Complete the `train()` method with your training loop
-2. Add data loading and preprocessing
-3. Implement checkpointing and logging
-4. Add configuration management via the `configs/` directory
-
+tinker checkpoint download $TINKER_SAMPLER_PATH
+python merge_chat.py --adapter checkpoints/dpo_filtered_001_lora --output checkpoints/dpo_filtered_001
+```
 ## Evaluation
 
-After training your model, you must evaluate it using **OLMES** (Open Language Model Evaluation System), AI2's evaluation suite.
-
 ### Evaluation Tasks
-
 Your model will be evaluated on the following benchmarks:
 
 | Task | Description |
@@ -132,107 +109,27 @@ Your model will be evaluated on the following benchmarks:
 | **XSTest** | Safety and harmfulness evaluation |
 
 ### Running Evaluations
-
-1. **Setup OLMES:**
-
+#### Evaluating SFT
 ```bash
-cd evals/olmes
+# modify based on your directory structure
+model path: CSE_5525_Final_Project/checkpoints/sft_role_final
 
-# Install with uv (recommended)
-export CC=gcc
-export CXX=g++
-uv sync
-uv sync --group gpu  # for GPU/vLLM support
+then run:
+sbatch evals/run_sft_eval.sh
+```
+#### Evaluating DPO
+```bash
+# modify based on your directory structure
+model path: CSE_5525_Final_Project/checkpoints/dpo_merged_01_1100
 
-# Or install with pip
-pip install -e .
-pip install -e ".[gpu]"  # for GPU support
+then run:
+sbatch evals/dpo_01_eval.sh
 ```
 
-2. **Run evaluations:**
-You can decide to run your evaluations on Tinker or on OSC. If you decide to use Tinker for evaluation, you will be responsible to porting this code evaluation harness into Tinker for your usage.
-
-To this code on OSC, please replace `xxxx` in `run_eval.sh` with the correct project.
-
-Use the provided evaluation script:
-
+#### For Monitoring:
 ```bash
-cd ../
-bash run_eval.sh
+# Monitor with:
+squeue -u <username>
+# See the output file (named slurm-<jobid>.out)
+tail -f slurm-<jobid>.out
 ```
-
-Or run individual evaluations:
-
-```bash
-# GSM8K (Mathematical Reasoning)
-olmes --model <your-model-path> --task gsm8k --output-dir <output-dir>
-
-# IFEval (Instruction Following)
-olmes --model <your-model-path> --task ifeval --output-dir <output-dir>
-
-# MBPP (Code Generation)
-olmes --model <your-model-path> --task mbpp --output-dir <output-dir>
-
-# HarmBench (Safety Evaluation)
-olmes --model <your-model-path> --task harmbench::default --output-dir <output-dir>
-```
-
-### Evaluation Output
-
-Each evaluation will produce:
-- `predictions.jsonl` - Model predictions for each task instance
-- `metrics.json` - Aggregated metrics and scores
-- Detailed logs and analysis
-
-## Submission Requirements
-
-You must submit the following:
-
-### 1. Prediction Files
-Submit the `predictions.jsonl` file for **each** evaluation task:
-- `gsm8k-predictions.jsonl`
-- `ifeval-predictions.jsonl`
-- `mbpp-predictions.jsonl`
-- `harmbench-predictions.jsonl`
-
-### 2. Final Model
-Submit your trained model checkpoint (or provide a link if hosted on HuggingFace Hub).
-
-### 3. Report
-Submit a written report documenting:
-- Your approach and methodology
-- Training details (hyperparameters, data used, compute resources)
-- Results and analysis
-- Ablation studies (if any)
-- Discussion of limitations and future work
-
-## Grading Criteria
-
-Your project will be graded on:
-1. **Implementation Quality** - Clean, well-documented code
-2. **Model Performance** - Scores on the evaluation benchmarks
-3. **Report Quality** - Clarity, completeness, and analysis depth
-4. **Innovation** - Creative approaches or improvements
-
-## Tips
-
-- Start with SFT as a baseline before trying more advanced methods
-- Monitor training loss and validation metrics carefully
-- Use smaller batch sizes with gradient accumulation if memory is limited
-- Test your evaluation pipeline early with a small model
-- Document your experiments thoroughly
-
-## Resources
-
-- [OLMES Documentation](https://github.com/allenai/olmes)
-- [Hugging Face Transformers](https://huggingface.co/docs/transformers)
-- [TRL (Transformer Reinforcement Learning)](https://huggingface.co/docs/trl)
-
-## Questions?
-
-If you have questions about the project, please:
-1. Post them on Teams/Carman
-2. Attend office hours
-3. Email the course TA (Abraham) or Instructor (Sachin)
-
-Good luck!

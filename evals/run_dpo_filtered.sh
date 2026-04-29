@@ -41,14 +41,10 @@ fi
 model=/fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/checkpoints/dpo_filtered
 
 # Define dataset names
-# dataset_name=(
-#     "gsm8k"
-#     "mbpp"
-#     "ifeval"
-#     "harmbench::default"
-#     "xstest::default"
-# )
 dataset_name=(
+    "gsm8k"
+    "mbpp"
+    "ifeval"
     "harmbench::default"
     "xstest::default"
 )
@@ -66,5 +62,5 @@ for dataset in "${dataset_name[@]}"; do
         --model-args '{"chat_model": true}' \
         --task ${dataset} \
         --num-shots ${num_shots} \
-        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/dpo_filtered_safety/${dataset}
+        --output-dir /fs/scratch/PAS3272/huang4978/CSE_5525_Final_Project/results/dpo_filtered_01/${dataset}
 done
